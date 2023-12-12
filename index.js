@@ -3,7 +3,7 @@ const app = express();
 const cors = require("cors");
 require("dotenv").config();
 
-const connectDB = require("./db"); // Import the connectDB function
+const connectDB = require("./db/connect"); // Import the connectDB function
 const setupScheduler = require("./scheduler/schdeuler");
 
 const controller = require("./Apis/currencyList/controller");
