@@ -1,7 +1,5 @@
-// Import necessary modules and dependencies
 const Currency = require("./model");
 const axios = require("axios");
-const { schema } = require("./schema");
 
 // Define the base URL for Coingecko APIs
 const BASE_URL = "https://api.coingecko.com/api/v3";
@@ -49,11 +47,12 @@ exports.addCurrencyList = async (req, res) => {
     // Respond with the inserted data
     if (response) res.status(201).send(response);
   } catch (err) {
-    console.log(err.message);
+    console.error(err.message);
+    res.status(500).json({ message: "Iternal Error" });
   }
 };
 
-// Update the list of currencies in the database (stub for potential future use)
+// Update the list of currencies in the database
 exports.updateCurrencyList = async (req, res) => {
   try {
     // Fetch currency data from Coingecko API
@@ -73,6 +72,7 @@ exports.updateCurrencyList = async (req, res) => {
     await Currency.insertMany(currencyList);
   } catch (err) {
     console.error(err.message);
+    res.send(500).json({ message: "Intnternal Error" });
   }
 };
 
