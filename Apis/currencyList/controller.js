@@ -34,7 +34,7 @@ exports.addCurrencyList = async (req, res) => {
     const currencyData = await axios.get(`${BASE_URL}/coins/list`);
 
     // Clear existing currency data from the database
-    Currency.deleteMany({});
+    await Currency.deleteMany({});
 
     // Map fetched currency data to the desired format for database insertion
     const currencyList = currencyData.data.map((currency) => ({
